@@ -1,0 +1,20 @@
+int countNode(struct TreeNode* node){
+    return node ? 1 + countNode(node->left) + countNode(node->right) : 0;
+}
+
+void inorder(struct TreeNode* node, int* arr, int *i){
+    if(!node) return;
+
+    inorder(node->left, arr, i);
+    arr[(*i)++] = node->val;
+    inorder(node->right, arr, i);
+}
+
+int* inorderTraversal(struct TreeNode* root, int* returnSize) {
+    int n = countNode(root), *res = (int*)malloc(sizeof(int) * n);
+    *returnSize = n;
+
+    inorder(root, res, &(int*){0});
+
+    return res;
+}
