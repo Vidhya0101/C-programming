@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int isSubstring(const char *str, const char *sub) {
+    while (*str) {
+        const char *s = str, *t = sub;
+        while (*t && *s == *t) {
+            s++;
+            t++;
+        }
+        if (*t == '\0') {
+            return 1;  //substring found 
+        }
+        str++;
+    }
+    return 0; // not found
+}
+
+int main() {
+    char str[] = "Hello, World!";
+    char sub[] = "World";
+    if (isSubstring(str, sub)) {
+        printf ("Substring found.\n");
+    } else {
+        printf("Substring not found.\n");
+    }
+    return 0;
+}
