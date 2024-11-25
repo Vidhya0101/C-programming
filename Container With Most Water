@@ -1,0 +1,17 @@
+#define min(X, Y) (((X) < (Y)) ? (X) : (Y))
+#define max(X, Y) (((X) > (Y)) ? (X) : (Y))
+int maxArea(int* height, int heightSize){
+    int i=0,j=heightSize-1;
+    int ans=-1,current;
+    while(i<j){
+        current=min(height[i],height[j])*(j-i);
+        ans=max(ans,current);
+        if(height[i]>height[j]){
+            j--;
+        }
+        else{
+            i++;
+        }
+    }
+    return ans;
+}
