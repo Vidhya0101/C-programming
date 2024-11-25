@@ -1,0 +1,13 @@
+bool hasPathSum(struct TreeNode* root, int targetSum){
+    if(!root) return false; //there is no root node so the target sum can't be found
+    if((!root->left)&&(!root->right)){ //if root is a leaf node
+        //The tree only consists of one node so there is only one path.
+        //the path has a sum equal to the node's value
+        return targetSum == root->val; //returns true when the path sum is equal to the target sum
+    } 
+    //returns true when there is a path to the left that equals the target sum
+    if(root->left && hasPathSum(root->left,targetSum - root->val))return true; 
+    //returns true when there is a path to the right that equals the target sum
+    if(root->right && hasPathSum(root->right,targetSum - root->val))return true;
+    return false; //returns false when there is no path downwards that has the target sum
+}
