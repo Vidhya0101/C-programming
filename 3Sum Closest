@@ -1,0 +1,17 @@
+int threeSumClosest(int* nums, int numsSize, int target) {
+    int diff = 0;
+    int minDiff = INT_MAX;
+    int sum = 0;
+    for(int j = 0; j < (numsSize - 2); j++) {
+        for(int k = j + 1; k < (numsSize - 1); k++) {
+            for(int l = k + 1; l < (numsSize); l++) {
+                diff = abs(target - (*(nums + j) + *(nums + k) + *(nums + l)));
+                if(diff < minDiff) {
+                    minDiff = diff;
+                    sum = *(nums + j) + *(nums + k) + *(nums + l);
+                }
+            }
+        }
+    }
+    return sum; 
+}
