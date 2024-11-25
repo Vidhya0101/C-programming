@@ -1,0 +1,51 @@
+int list_index = 0;
+
+
+char *list_add(char *list[], char *str, int *listlen)
+{
+	int len;
+	len = strlen(str);
+	list[list_index] = calloc(len+1, sizeof(char));
+	snprintf(list[list_index++], len+1, "%s", str);
+	*listlen = list_index;
+
+	return NULL;
+}
+
+void add_bracket(char *list[], int *listlen, char bracket[], int i, int open, int close, int max)
+{
+	if (open == max && close == max) {
+		list_add(list, bracket, listlen);
+		return;
+	}
+
+	if (open < max) {
+		bracket[i] = '(';
+		add_bracket(list, listlen, bracket, i+1, open+1, close, max);
+	}
+	if (close < open) {
+		bracket[i] = ')';
+		add_bracket(list, listlen, bracket, i+1, open, close+1, max);
+	}
+}
+
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+char ** generateParenthesis(int n, int* returnSize)
+{
+    char **list;
+    char *bracket;
+    
+    if (n == 0) {
+        *returnSize = 0;
+        return NULL;
+    }
+    list = malloc(sizeof(char*)*n*2*100);
+    bracket = calloc(n*2+1, sizeof(char));
+    *returnSize = 0;
+    list_index = 0;
+    add_bracket(list, returnSize, bracket, 0, 0, 0, n);
+    free(bracket);
+    return list;
+}
