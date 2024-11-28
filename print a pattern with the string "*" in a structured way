@@ -1,0 +1,15 @@
+#include<stdio.h>
+int main() {
+    int i,j,n;
+    printf ("Enter an number:\n");
+    scanf ("%d",&n);
+    for (j=1; j<=n; j++) {
+    for (i=0; i<j; i++)  {
+            printf ("*\t");
+    }
+            printf ("\n");
+        }
+           
+    
+         return 0;
+}
