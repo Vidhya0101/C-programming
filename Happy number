@@ -1,0 +1,17 @@
+int digitSum(int num){
+    int sum = 0;
+    while ( num ){
+        sum += (num % 10)*(num % 10);
+        num /= 10;
+    }
+    return sum;
+}
+
+bool isHappy(int n){
+    int fast = n, slow = n;
+    do{
+        slow = digitSum(slow);
+        fast = digitSum(digitSum(fast));
+    } while (slow != fast);
+    return slow == 1;
+}
