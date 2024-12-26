@@ -1,0 +1,11 @@
+uint32_t reverseBits(uint32_t n) {
+    unsigned int result=0;
+    int i,j=31;
+    for(i=0;i<32;i++){
+        if(n & 1)
+            result+=pow(2,j);
+        j--;
+        n>>=1;
+    }
+    return result;
+}
